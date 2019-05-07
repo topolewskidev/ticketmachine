@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketMachine", "TrainTicketMachine\TrainTicketMachine.csproj", "{F51C55C2-E6F6-44FA-AA1D-AC66106110DA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{45C2B054-3AC1-4A4D-AE28-4568FDE2C659}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTicketMachine.Tests", "TrainTicketMachine.Tests\TrainTicketMachine.Tests.csproj", "{D0BF3A52-23A2-48FE-A504-FE947DCDAD7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{F51C55C2-E6F6-44FA-AA1D-AC66106110DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F51C55C2-E6F6-44FA-AA1D-AC66106110DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F51C55C2-E6F6-44FA-AA1D-AC66106110DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0BF3A52-23A2-48FE-A504-FE947DCDAD7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0BF3A52-23A2-48FE-A504-FE947DCDAD7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0BF3A52-23A2-48FE-A504-FE947DCDAD7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0BF3A52-23A2-48FE-A504-FE947DCDAD7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D0BF3A52-23A2-48FE-A504-FE947DCDAD7E} = {45C2B054-3AC1-4A4D-AE28-4568FDE2C659}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EC0ECD70-6F50-459A-A2BE-A179BEE75120}
