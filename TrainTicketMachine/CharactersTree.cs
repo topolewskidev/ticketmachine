@@ -1,22 +1,16 @@
-﻿namespace TrainTicketMachine
+﻿using System;
+using System.Linq;
+
+namespace TrainTicketMachine
 {
     public class CharactersTree : ISearchableTree
     {
-        public TreeNode Root { get; } = TreeNode.Empty;
+        public TreeNode Root { get; } = new TreeNode(default(char), 0);
 
         public void Insert(string item)
         {
-            var currentNode = GetParent(item);
-
-            for (int i = currentNode.Depth; i < item.Length; i++)
-            {
-                var node = new TreeNode(item[i], i + 1);
-
-                currentNode.AddChild(node);
-                currentNode = node;
-            }
-
-            currentNode.AddChild(new TreeNode(default(char), currentNode.Depth + 1));
+            var lastExistingNode = GetParent(item);
+            lastExistingNode.BuildMissingNodes(item);
         }
 
         public TreeNode GetParent(string text)

@@ -21,11 +21,6 @@ namespace TrainTicketMachine
 
         public char Value { get; }
 
-        public void AddChild(TreeNode childNode)
-        {
-            _children.Add(childNode);
-        }
-
         public TreeNode TryGetChildNode(char searchValue)
         {
             var childNode = _children.SingleOrDefault(node => node.Value.Equals(searchValue));
@@ -36,6 +31,31 @@ namespace TrainTicketMachine
             }
 
             return childNode;
+        }
+
+        public void BuildMissingNodes(string item)
+        {
+            var lastNode = item.Substring(Depth)
+                .Aggregate(this, (node, character) =>
+                {
+                    var newNode = new TreeNode(character, node.Depth + 1);
+
+                    node.AddChild(newNode);
+
+                    return newNode;
+                });
+
+            FinishString(lastNode);
+        }
+
+        private void FinishString(TreeNode treeNode)
+        {
+            treeNode.AddChild(new TreeNode(default(char), treeNode.Depth + 1));
+        }
+
+        private void AddChild(TreeNode childNode)
+        {
+            _children.Add(childNode);
         }
     }
 }
