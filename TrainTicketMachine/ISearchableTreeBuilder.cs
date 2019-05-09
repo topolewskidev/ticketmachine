@@ -11,7 +11,14 @@ namespace TrainTicketMachine
     {
         public ISearchableTree Build(IEnumerable<string> stringItems)
         {
-            return null;
+            var tree = new CharactersTree();
+
+            foreach (var item in stringItems)
+            {
+                tree.Insert(item);
+            }
+
+            return tree;
         }
     }
 }
