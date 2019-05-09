@@ -35,6 +35,7 @@ namespace TrainTicketMachine
         private IEnumerable<char> BuildNextCharacters(TreeNode treeNode)
         {
             return treeNode.Children
+                .Where(node => !node.Value.Equals(default(char)))
                 .Select(node => node.Value).ToList();
         }
     }
