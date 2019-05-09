@@ -62,5 +62,46 @@ namespace TrainTicketMachine.Tests
                 _suggestions.NextCharacters.Should().BeEquivalentTo(expectedCharacters);
             });
         }
+
+        [Scenario]
+        public void SuggestingStationsForCaseWithSpace()
+        {
+            "Given a list of stations".x(() =>
+            {
+                _stations = new List<string>
+                {
+                    "LIVERPOOL",
+                    "LIVERPOOL LIME STREET",
+                    "PADDINGTON"
+                };
+            });
+
+            "When user inputs text".x(() =>
+            {
+                var searchableTree = _searchableTreeBuilder.Build(_stations);
+                _suggestions = _suggestionsProvider.Get("LIVERPOOL", searchableTree);
+            });
+
+            "Then suggestions should contain proper stations".x(() =>
+            {
+                var expectedStations = new[]
+                {
+                    "LIVERPOOL",
+                    "LIVERPOOL LIME STREET"
+                };
+
+                _suggestions.MatchedItems.Should().BeEquivalentTo(expectedStations);
+            });
+
+            "And suggestions should contain next characters".x(() =>
+            {
+                var expectedCharacters = new[]
+                {
+                    ' '
+                };
+
+                _suggestions.NextCharacters.Should().BeEquivalentTo(expectedCharacters);
+            });
+        }
     }
 }
