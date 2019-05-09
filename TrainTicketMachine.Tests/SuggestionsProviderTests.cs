@@ -36,8 +36,7 @@ namespace TrainTicketMachine.Tests
 
             "When user inputs text".x(() =>
             {
-                var searchableTree = _searchableTreeBuilder.Build(_stations);
-                _suggestions = _suggestionsProvider.Get("DART", searchableTree);
+                PerformSearch("DART");
             });
 
             "Then suggestions should contain proper stations".x(() =>
@@ -78,8 +77,7 @@ namespace TrainTicketMachine.Tests
 
             "When user inputs text".x(() =>
             {
-                var searchableTree = _searchableTreeBuilder.Build(_stations);
-                _suggestions = _suggestionsProvider.Get("LIVERPOOL", searchableTree);
+                PerformSearch("LIVERPOOL");
             });
 
             "Then suggestions should contain proper stations".x(() =>
@@ -102,6 +100,41 @@ namespace TrainTicketMachine.Tests
 
                 _suggestions.NextCharacters.Should().BeEquivalentTo(expectedCharacters);
             });
+        }
+
+        [Scenario]
+        public void SuggestingStationsForCaseWithoutMatchingItems()
+        {
+            "Given a list of stations".x(() =>
+            {
+                _stations = new List<string>
+                {
+                    "EUSTON",
+                    "LONDON BRIDGE",
+                    "VICTORIA"
+                };
+            });
+
+            "When user inputs text".x(() =>
+            {
+                PerformSearch("KINGS CROSS");
+            });
+
+            "Then suggestions should not contain any station".x(() =>
+            {
+                _suggestions.MatchedItems.Should().BeEmpty();
+            });
+
+            "And suggestions should not contain any character".x(() =>
+            {
+                _suggestions.NextCharacters.Should().BeEmpty();
+            });
+        }
+
+        private void PerformSearch(string searchedText)
+        {
+            var searchableTree = _searchableTreeBuilder.Build(_stations);
+            _suggestions = _suggestionsProvider.Get(searchedText, searchableTree);
         }
     }
 }
