@@ -38,5 +38,22 @@
 
             return result;
         }
+
+        public TreeNode SearchForNode(string searchedText)
+        {
+            var currentNode = Root;
+
+            foreach (var character in searchedText)
+            {
+                currentNode = currentNode.TryGetChildNode(character);
+
+                if (currentNode == TreeNode.Empty)
+                {
+                    break;
+                }
+            }
+
+            return currentNode;
+        }
     }
 }

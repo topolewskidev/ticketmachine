@@ -15,6 +15,8 @@ namespace TrainTicketMachine
             Depth = depth;
         }
 
+        public IReadOnlyList<TreeNode> Children => _children.ToList();
+
         public int Depth { get; }
 
         public char Value { get; }
